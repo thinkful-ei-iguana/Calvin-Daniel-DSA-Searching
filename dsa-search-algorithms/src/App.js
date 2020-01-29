@@ -17,7 +17,7 @@ function App() {
     let counter = 0;
     while (arr.length > 0) {
       counter++;
-      const index = Math.floor(arr.length);
+      const index = Math.floor(arr.length / 2);
       if (arr[index] === num) {
         alert(counter);
         return;
@@ -26,7 +26,11 @@ function App() {
         arr = arr.slice(0, index);
       }
       if (num > arr[index]) {
-        arr = arr.slice(index, arr.length - 1);
+        if (arr.length === 2) {
+          arr = arr.slice(index + 1);
+        } else {
+          arr = arr.slice(index + 1, arr.length - 1);
+        }
       }
     }
     alert("Number not found");
