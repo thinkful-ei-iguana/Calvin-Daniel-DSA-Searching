@@ -61,4 +61,30 @@ console.log(starTrek.preorder());
 
 //  Drill # 7
 // Max profit
-// The share price for a company over a week's trading is as follows: [128, 97, 121, 123, 98, 97, 105]. If you had to buy shares in the company on a particular day, and sell the shares on a subsequent day, write an algorithm to work out what the maximum profit you could make would be.
+// The share price for a company over a week's trading is as follows: [128, 97, 121, 123, 98, 97, 105]. If you had to buy shares in the company on a particular day, and sell the shares on any following day, write an algorithm to work out what the maximum profit you could make would be.
+
+//
+// Start at node 128, logic checks if has right target, if not then move down left chain one node and check right again. Find largest difference from current node to right target, return value.
+// input of prices for function parameter
+const profitTree = [128, 97, 121, 123, 98, 97, 105];
+const maxProfit = (profitTree, maxP, smallest) => {
+  if (profitTree.left === null && profitTree.right === null) {
+    return maxP;
+  }
+  if (this.right) {
+    // do comparison logic in this portion
+    if (this.value - smallest > maxP) {
+      maxP = this.value - smallest;
+    }
+    maxProfit(this.right, maxP, smallest);
+    maxProfit(this.right, maxP, this.value);
+    return maxP;
+  }
+  if (this.left) {
+    maxProfit(profitTree.left, maxP, smallest);
+  }
+  // if logic to check right hand side
+  // logic to check difference between current and target
+  // call function recursively to perform it's calculation through each node
+};
+console.log(maxProfit(profitTree, 0, profitTree.value));
