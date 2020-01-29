@@ -66,7 +66,19 @@ console.log(starTrek.preorder());
 //
 // Start at node 128, logic checks if has right target, if not then move down left chain one node and check right again. Find largest difference from current node to right target, return value.
 // input of prices for function parameter
-const profitTree = [128, 97, 121, 123, 98, 97, 105];
+const profitTree = new BST();
+tree.insert(128, 128);
+tree.insert(97, 97);
+tree.insert(121, 121);
+tree.insert(123, 123);
+tree.insert(98, 98);
+tree.insert(97, 97);
+tree.insert(105, 105);
+
+// const variable set equal to a 'new' BST()
+// variable name.insert() adds information as key and value paired
+// first checks if there's a node, then logic checks through greater than/ lesser than
+
 const maxProfit = (profitTree, maxP, smallest) => {
   if (profitTree.left === null && profitTree.right === null) {
     return maxP;
@@ -76,12 +88,12 @@ const maxProfit = (profitTree, maxP, smallest) => {
     if (this.value - smallest > maxP) {
       maxP = this.value - smallest;
     }
-    maxProfit(this.right, maxP, smallest);
-    maxProfit(this.right, maxP, this.value);
-    return maxP;
+    const current = maxProfit(this.right, maxP, smallest);
+    const next = maxProfit(this.right, maxP, this.value);
+    return current > next ? current : next;
   }
   if (this.left) {
-    maxProfit(profitTree.left, maxP, smallest);
+    return maxProfit(profitTree.left, maxP, smallest);
   }
   // if logic to check right hand side
   // logic to check difference between current and target
