@@ -13,3 +13,9 @@
 // root = 11
 // 16 is > 11
 // 11, 15, 17 no 16;
+
+// Pt 3
+// Just implement a binary search.
+
+// Pt 4
+// 
