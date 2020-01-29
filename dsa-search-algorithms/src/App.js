@@ -6,6 +6,25 @@ function App() {
   // state react hooks
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("");
+  function binarySearch(array, value, start, end, counter = 0) {
+    if (start > end) {
+      return -1;
+    }
+
+    const index = Math.floor((start + end) / 2);
+    const item = array[index];
+
+    console.log(start, end);
+    if (item == value) {
+      alert(counter);
+      return index;
+    } else if (item < value) {
+      return binarySearch(array, value, index + 1, end, ++counter);
+    } else if (item > value) {
+      return binarySearch(array, value, start, index - 1, ++counter);
+    }
+  }
+
   const calculateBinary = () => {
     let arr = input
       .split(" ")
@@ -14,26 +33,7 @@ function App() {
         return a - b;
       });
     const num = Number(search);
-    let counter = 0;
-    while (arr.length > 0) {
-      counter++;
-      const index = Math.floor(arr.length / 2);
-      if (arr[index] === num) {
-        alert(counter);
-        return;
-      }
-      if (num < arr[index]) {
-        arr = arr.slice(0, index);
-      }
-      if (num > arr[index]) {
-        if (arr.length === 2) {
-          arr = arr.slice(index + 1);
-        } else {
-          arr = arr.slice(index + 1, arr.length - 1);
-        }
-      }
-    }
-    alert("Number not found");
+    binarySearch(arr, num, 0, arr.length - 1);
   };
   const calculateLinear = () => {
     const arr = input.split(" ");
