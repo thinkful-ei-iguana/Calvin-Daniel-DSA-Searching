@@ -18,4 +18,17 @@
 // Just implement a binary search.
 
 // Pt 4
-// 
+// 1) 14, 19, 90, 15, 27, 79, 91, 25, 89, 35
+// 2) 5, 7, 6, 9, 11, 10, 8
+
+const BST = require('./BST');
+const tree = new BST();
+const arr = [25, 15, 50, 10, 24, 35, 70, 4, 12, 18, 31, 44, 66, 90, 22];
+for (let num of arr) {
+  tree.insert(num, num);
+}
+
+console.log(tree.preorder());
+console.log(tree.inorder());
+console.log(tree.postorder());
+
