@@ -67,36 +67,60 @@ console.log(starTrek.preorder());
 // Start at node 128, logic checks if has right target, if not then move down left chain one node and check right again. Find largest difference from current node to right target, return value.
 // input of prices for function parameter
 const profitTree = new BST();
-tree.insert(128, 128);
-tree.insert(97, 97);
-tree.insert(121, 121);
-tree.insert(123, 123);
-tree.insert(98, 98);
-tree.insert(97, 97);
-tree.insert(105, 105);
+profitTree.insert(128, 128);
+profitTree.insert(97, 97);
+profitTree.insert(121, 121);
+profitTree.insert(123, 123);
+profitTree.insert(98, 98);
+profitTree.insert(97, 97);
+profitTree.insert(105, 105);
 
 // const variable set equal to a 'new' BST()
 // variable name.insert() adds information as key and value paired
 // first checks if there's a node, then logic checks through greater than/ lesser than
 
-const maxProfit = (profitTree, maxP, smallest) => {
-  if (profitTree.left === null && profitTree.right === null) {
-    return maxP;
-  }
-  if (this.right) {
-    // do comparison logic in this portion
-    if (this.value - smallest > maxP) {
-      maxP = this.value - smallest;
-    }
-    const current = maxProfit(this.right, maxP, smallest);
-    const next = maxProfit(this.right, maxP, this.value);
-    return current > next ? current : next;
-  }
-  if (this.left) {
-    return maxProfit(profitTree.left, maxP, smallest);
-  }
+// const maxProfit = (profitTree, maxP, smallest) => {
+//   if (profitTree.left === null && profitTree.right === null) {
+//     return maxP;
+//   }
+//   if (this.right) {
+//     // do comparison logic in this portion
+//     if (this.value - smallest > maxP) {
+//       maxP = this.value - smallest;
+//     }
+//     const current = maxProfit(this.right, maxP, smallest);
+//     const next = maxProfit(this.right, maxP, this.value);
+//     return current > next ? current : next;
+//   }
+//   if (this.left) {
+//     const current = maxProfit(this.left, maxP, smallest);
+//     const next = maxProfit(this.left, maxP, this.next.value);
+//     return current > next ? current : next;
+//   }
   // if logic to check right hand side
   // logic to check difference between current and target
   // call function recursively to perform it's calculation through each node
-};
+// };
+
+console.log(profitTree);
+function maxProfit(tree, maxP, current) {
+  
+  if (tree.right === null && tree.left === null) {
+    if (tree.value - current > maxP) maxP = tree.value - current;
+    return maxP;
+  }
+
+  if (tree.value - current > maxP) maxP = tree.value - current;
+  
+  if (tree.right) {
+    const rCurrent =  maxProfit(tree.right, maxP, current);
+    const rNext = maxProfit(tree.right, maxP, tree.right.value);
+    return rCurrent > rNext ? rCurrent : rNext;
+  }
+
+  const lCurrent = maxProfit(tree.left, maxP, current);
+  const lNext = maxProfit(tree.left, maxP, tree.left.value);
+  return lCurrent > lNext ? lCurrent : lNext;
+
+}
 console.log(maxProfit(profitTree, 0, profitTree.value));
