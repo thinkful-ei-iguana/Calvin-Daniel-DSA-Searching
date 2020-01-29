@@ -2,15 +2,23 @@ import React from "react";
 import { useState } from "react";
 // find index of
 
-const calculateLinear = arr => {};
-
-const calculateBinary = () => {};
-
 function App() {
   // state react hooks
   const [input, setInput] = useState("");
+  const [search, setSearch] = useState("");
+  const calculateBinary = () => {};
+  const calculateLinear = () => {
+    const arr = input.split(" ");
+    alert(arr.indexOf(search) + 1);
+  };
   return (
     <>
+      <input
+        type="text"
+        id="textInput"
+        onChange={event => setSearch(event.target.value)}
+        value={search}
+      ></input>
       <textarea
         rows="4"
         cols="50"
